@@ -2,10 +2,10 @@
 
 int main(void)
 {
-    char c;
+    char c, e;
     int asc[1024];
     int i;
-    int key = 5;
+    int k = 5;
     
     //Open message file
     FILE *input;        //File points to input
@@ -19,10 +19,14 @@ int main(void)
        
     for(i = 0; i <= 15; i++){       //assigns incrementing array pointers to character values
         
+        
         fscanf(input,"%c", &c);      
         asc[i] = c;
-        printf("%c %d %d %c\n", asc[i], asc[i], asc[i] - key, asc[i] - key); //prints array character & ASCII value, then  ASCII value with key applied & decrypted array character
+        e = (c+k);  //encryption algorithm 
+        printf("%c %d %c\n", asc[i], asc[i], e); //prints array character & ASCII value, then encrypted array character
         
+        
+
     }    
 
    
