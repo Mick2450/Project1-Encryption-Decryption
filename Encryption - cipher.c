@@ -7,21 +7,21 @@ int main(void)
     int i;
     
     //Open message file
+    FILE *input;        //File points to input
     
-    FILE *input; 
-    
-    input = fopen("Task 1 message", "r");
-    if(input == NULL) {
+    input = fopen("Task 1 message", "r");   //open file name and read format
+    if(input == NULL) {         //Error message incase file directory not found
         perror("fopen()");
     return 0;
     }
     
        
-    for(i = 0; i <= 15; i++){
+    for(i = 0; i <= 15; i++){       //assigns incrementing array pointers to character values
      
         fscanf(input,"%c", &c);      
         asc[i] = c;
-        printf("%c\n", asc[i]);
+        printf("%c %d\n", asc[i], asc[i]); //prints i number of array values and corresponding ASCII value
+        
     }    
 
    
