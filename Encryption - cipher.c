@@ -3,7 +3,7 @@
 int main(void)
 {
     char c, eN;
-    int eLib[] = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90};
+    int eLib[] = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90}; //library of encryption values
     int asc[1024];
     int i , e;
     int k = 5;  //key
@@ -25,19 +25,32 @@ int main(void)
             asc[i] = c;  //assigns array at array point i with value c
             c = c - 65; //A = 0
             e = c + k; //encryption algorithm 
-            eN = eLib[e];  //selects encrypted value from array 
+            if(e > 90){ //restarting array values
+                e = e - 26;           
+                eN = eLib[e];  //selects encrypted value from array 
+            }
+            else{
+                eN = eLib[e];
+            }
         }   
 
         else if(c >= 97 && c <=122){  //lower case
             asc[i] = c - 32;  //
             c = c - 97; 
             e = c + k;
-            eN = eLib[e];           
+            if(e > 90){
+                e = e - 26;           
+                eN = eLib[e];  //selects encrypted value from array 
+            }
+            else{
+                eN = eLib[e];
+            }
+                     
         }
         
         else if(c < 65 || (c >= 91 && c <= 96) || c > 122 ){ //excludes any ASCII value that isn't a letter
-            asc[i] = 32;  //
-            eN = 32;  //
+            asc[i] = 32;  //sets ASCII value to space
+            eN = 32;  //sets ASCII value to space
         }   
 
         printf("%c %d %c %d\n", asc[i], asc[i], eN, eN);
