@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    char c, e;
+    char c, e;  
     int asc[1024];
     int i;
     int k = 5;  //key
@@ -16,36 +16,37 @@ int main(void)
     }
     
        
-    for(i = 0; i <= 15; i++){       //assigns incrementing array pointers to character values
+    for(i = 0; i <= 15; i++){ // incrementing array pointer
         
-        
-        fscanf(input,"%c", &c);      
-        asc[i] = c;
-        e = (c+k);  //encryption algorithm  
-        /*prints array character & ASCII value, then encrypted array character*/
-        
-        if(e >= 65 && e <= 90){
-            printf("%c %d %c\n", asc[i], asc[i], e);    //prints capital letters
+        /*Scans file for characters and stores them as a variable c*/
+        fscanf(input,"%c", &c); 
+        if(c >= 65 && c <= 90){ // upper case
+            asc[i] = c;  //assigns array at array point i with value c
+            e = (c+k);  //encryption algorithm  
+        }   
+
+        else if(c >= 97 && c <=122){  //lower case
+            asc[i] = c - 32;  //
+            e = (c+k) - 32;  //
         }
-        else if(e >= 97 && e <= 122){                   //converts non-capital to capital and prints
-            printf("%c %d %c\n", asc[i]-32, asc[i]-32, e-32); 
-        }
-    
-
-
-
         
+        else if(c < 65 || (c >= 91 && c <= 96) || c > 122 ){ //excludes any ASCII value that isn't a letter
+            asc[i] = 32;  //
+            e = 32;  //
+        }   
 
-        
-        
-
-    }    
-
-   
-
-
+        printf("%c %d %c\n", asc[i], asc[i], e);
+    }
   
    return 0; 
 
 }
 
+/*   else if(c >= 97 && c <=122){
+            asc[i] = c - 32;  //
+            e = (c+k) - 32;  //
+        }
+        else if(c >= 97 && c <=122){
+            asc[i] = c - 32;  //
+            e = (c+k) - 32;  //
+        }   */
