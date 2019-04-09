@@ -21,39 +21,34 @@ int main(void)
         
         /*Scans file for characters and stores them as a variable c*/
         fscanf(input,"%c", &c); 
-        if(c >= 65 && c <= 90){ // upper case
-            asc[i] = c;  //assigns array at array point i with value c
-            c = c - 65; //A = 0
-            e = c + k; //encryption algorithm 
-            if(e > 90){ //restarting array values
-                e = e - 26;           
-                eN = eLib[e];  //selects encrypted value from array 
-            }
-            else{
-                eN = eLib[e];
-            }
+        if(c >= 65 && c <= 90){  // upper case
+            asc[i] = c;     //assigns array at array point i with value c
+            c = c - 65;     //A = 0
+            e = c + k;  //encryption algorithm 
+            if(e > 26){     //if array pointer value is exceeded
+                e = e - 26;    //starts array pointers over again plus difference between total value (>26) and max pointer value (26)    
+              }
+             eN = eLib[e]; //selects encrypted value from array
         }   
 
         else if(c >= 97 && c <=122){  //lower case
             asc[i] = c - 32;  //
             c = c - 97; 
             e = c + k;
-            if(e > 90){
-                e = e - 26;           
-                eN = eLib[e];  //selects encrypted value from array 
+            if(e > 26){     //if array pointer value is exceeded
+                e = e - 26;     //starts array pointers over again plus difference between total value (>26) and max pointer value (26)    
             }
-            else{
-                eN = eLib[e];
-            }
-                     
-        }
+        eN = eLib[e];  //selects encrypted value from array 
+
+        }           
+        
         
         else if(c < 65 || (c >= 91 && c <= 96) || c > 122 ){ //excludes any ASCII value that isn't a letter
             asc[i] = 32;  //sets ASCII value to space
             eN = 32;  //sets ASCII value to space
         }   
 
-        printf("%c %d %c %d\n", asc[i], asc[i], eN, eN);
+        printf("%c encrypted: %c\n", asc[i], eN);
     }
   
    return 0; 
